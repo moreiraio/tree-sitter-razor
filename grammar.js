@@ -27,9 +27,13 @@ module.exports = grammar({
 
         interpolated_code_block: $ => seq('@{', $._code, '}'),
 
+        if: $ => seq("if"),
+        _opening_bracket : $ => seq("{"),
+        _closing_bracket : $ => seq("}"),
+
         interpolated_if_statement: $ => seq(
-          '@if', '(',')',/\n/,
-          '{', repeat($.content), '}'
+          '@', $.if, '(',')',/\n/,
+          $._opening_bracket, repeat($.content), $._closing_bracket
 
         ),
 
