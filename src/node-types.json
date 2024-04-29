@@ -1,16 +1,16 @@
 [
   {
+    "type": "await",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "content",
     "named": true,
     "fields": {}
   },
   {
-    "type": "interpolated_code_block",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "interpolated_if_statement",
+    "type": "curly_braces_content",
     "named": true,
     "fields": {},
     "children": {
@@ -18,11 +18,192 @@
       "required": false,
       "types": [
         {
+          "type": "await",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "content",
+          "named": true
+        },
+        {
+          "type": "interpolated_code_block",
+          "named": true
+        },
+        {
+          "type": "interpolated_for_statement",
+          "named": true
+        },
+        {
+          "type": "interpolated_if_statement",
+          "named": true
+        },
+        {
+          "type": "model",
+          "named": true
+        },
+        {
+          "type": "render",
+          "named": true
+        },
+        {
+          "type": "route_declaration",
+          "named": true
+        },
+        {
+          "type": "viewdata",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "for",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "if",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "interpolated_code_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "curly_braces_content",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "interpolated_for_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "await",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "content",
+          "named": true
+        },
+        {
+          "type": "for",
+          "named": true
+        },
+        {
+          "type": "interpolated_code_block",
+          "named": true
+        },
+        {
+          "type": "interpolated_for_statement",
+          "named": true
+        },
+        {
+          "type": "interpolated_if_statement",
+          "named": true
+        },
+        {
+          "type": "model",
+          "named": true
+        },
+        {
+          "type": "render",
+          "named": true
+        },
+        {
+          "type": "route_declaration",
+          "named": true
+        },
+        {
+          "type": "viewdata",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "interpolated_if_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "await",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "content",
+          "named": true
+        },
+        {
+          "type": "if",
+          "named": true
+        },
+        {
+          "type": "interpolated_code_block",
+          "named": true
+        },
+        {
+          "type": "interpolated_for_statement",
+          "named": true
+        },
+        {
+          "type": "interpolated_if_statement",
+          "named": true
+        },
+        {
+          "type": "model",
+          "named": true
+        },
+        {
+          "type": "render",
+          "named": true
+        },
+        {
+          "type": "route_declaration",
+          "named": true
+        },
+        {
+          "type": "viewdata",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "model",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "render",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "route_declaration",
@@ -38,6 +219,14 @@
       "required": false,
       "types": [
         {
+          "type": "await",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "content",
           "named": true
         },
@@ -46,18 +235,47 @@
           "named": true
         },
         {
+          "type": "interpolated_for_statement",
+          "named": true
+        },
+        {
           "type": "interpolated_if_statement",
           "named": true
         },
         {
+          "type": "model",
+          "named": true
+        },
+        {
+          "type": "render",
+          "named": true
+        },
+        {
           "type": "route_declaration",
+          "named": true
+        },
+        {
+          "type": "viewdata",
           "named": true
         }
       ]
     }
   },
   {
+    "type": "viewdata",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "\"]",
+    "named": false
+  },
+  {
     "type": "(",
+    "named": false
+  },
+  {
+    "type": "()",
     "named": false
   },
   {
@@ -65,7 +283,15 @@
     "named": false
   },
   {
-    "type": "@if",
+    "type": "@",
+    "named": false
+  },
+  {
+    "type": "@Model",
+    "named": false
+  },
+  {
+    "type": "@ViewData[",
     "named": false
   },
   {
@@ -73,11 +299,19 @@
     "named": false
   },
   {
-    "type": "@{",
+    "type": "^[@}]",
     "named": false
   },
   {
-    "type": "^@",
+    "type": "comment",
+    "named": true
+  },
+  {
+    "type": "for",
+    "named": false
+  },
+  {
+    "type": "if",
     "named": false
   },
   {

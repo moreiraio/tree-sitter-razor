@@ -25,7 +25,87 @@
         },
         {
           "type": "SYMBOL",
+          "name": "interpolated_for_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "comment"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "render"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "viewdata"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "model"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "await"
+        },
+        {
+          "type": "SYMBOL",
           "name": "content"
+        }
+      ]
+    },
+    "model": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "@Model"
+        },
+        {
+          "type": "PATTERN",
+          "value": ".?[A-z0-9]*"
+        }
+      ]
+    },
+    "render": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "@"
+        },
+        {
+          "type": "PATTERN",
+          "value": ".?[A-z0-9]*"
+        },
+        {
+          "type": "STRING",
+          "value": "()"
+        }
+      ]
+    },
+    "viewdata": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "@ViewData["
+        },
+        {
+          "type": "PATTERN",
+          "value": ".?[A-z0-9]*"
+        },
+        {
+          "type": "STRING",
+          "value": "\"]"
+        }
+      ]
+    },
+    "await": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "@await(.?[A-z0-9])*(.*)"
         }
       ]
     },
@@ -43,12 +123,88 @@
       "members": [
         {
           "type": "STRING",
-          "value": "@{"
+          "value": "@"
         },
         {
           "type": "SYMBOL",
-          "name": "_code"
+          "name": "curly_braces_content"
+        }
+      ]
+    },
+    "curly_braces_content": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
         },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_markup"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "_identifier_token": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "@"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "PATTERN",
+            "value": "[\\p{L}\\p{Nl}_][\\p{L}\\p{Nl}\\p{Nd}\\p{Pc}\\p{Cf}\\p{Mn}\\p{Mc}]*"
+          }
+        ]
+      }
+    },
+    "if": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "if"
+        }
+      ]
+    },
+    "for": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "for"
+        }
+      ]
+    },
+    "_opening_bracket": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        }
+      ]
+    },
+    "_closing_bracket": {
+      "type": "SEQ",
+      "members": [
         {
           "type": "STRING",
           "value": "}"
@@ -60,11 +216,22 @@
       "members": [
         {
           "type": "STRING",
-          "value": "@if"
+          "value": "@"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "if"
         },
         {
           "type": "STRING",
           "value": "("
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "PATTERN",
+            "value": ".?[A-z0-9]*"
+          }
         },
         {
           "type": "STRING",
@@ -75,21 +242,106 @@
           "value": "\\n"
         },
         {
-          "type": "STRING",
-          "value": "{"
+          "type": "SYMBOL",
+          "name": "_opening_bracket"
         },
         {
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "content"
+            "name": "_markup"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_closing_bracket"
+        }
+      ]
+    },
+    "interpolated_for_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "@"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "for"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "PATTERN",
+            "value": ".?[A-z0-9]*"
           }
         },
         {
           "type": "STRING",
-          "value": "}"
+          "value": ")"
+        },
+        {
+          "type": "PATTERN",
+          "value": "\\n"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_opening_bracket"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_markup"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_closing_bracket"
         }
       ]
+    },
+    "comment": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "//"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[^\\n\\r]*"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "/*"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[^*]*\\*+([^/*][^*]*\\*+)*"
+              },
+              {
+                "type": "STRING",
+                "value": "/"
+              }
+            ]
+          }
+        ]
+      }
     },
     "code_block": {
       "type": "SEQ",
@@ -99,14 +351,21 @@
           "value": "{"
         },
         {
-          "type": "SYMBOL",
-          "name": "_code"
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_markup"
+          }
         },
         {
           "type": "STRING",
           "value": "}"
         }
       ]
+    },
+    "cscode": {
+      "type": "PATTERN",
+      "value": "[\\p{L}\\p{Nl}_][\\p{L}\\p{Nl}\\p{Nd}\\p{Pc}\\p{Cf}\\p{Mn}\\p{Mc}\\s]*"
     },
     "_code": {
       "type": "PATTERN",
@@ -126,7 +385,7 @@
             },
             {
               "type": "STRING",
-              "value": "^@"
+              "value": "^[@}]"
             }
           ]
         }
@@ -139,7 +398,12 @@
       "value": "\\s"
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    [
+      "comment",
+      "content"
+    ]
+  ],
   "precedences": [],
   "externals": [],
   "inline": [],
